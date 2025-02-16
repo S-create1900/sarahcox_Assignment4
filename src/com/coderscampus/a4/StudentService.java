@@ -98,26 +98,21 @@ package com.coderscampus.a4;
 		
 
 		// Method to write students to a CSV file
-		private void writeStudentsToCsv(Student[] students, int count, String fileName) {
-			try (BufferedWriter BufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
-				BufferedWriter.write("Student ID,Student Name,Course,Grade\n"); // Write header
-				for (int i = 0; i < count; i++) {
-					if (students[i] != null) {
-						BufferedWriter.write(students[i].getStudentID() + "," + students[i].getStudentName() + ","
-								+ students[i].getCourse() + "," + students[i].getGrade() + "\n");
-					}
-				}
-			} catch (IOException e) {
-			}
-		}
+	    private void writeStudentsToCsv(Student[] students, int count, String fileName) {
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+	            writer.write("Student ID,Student Name,Course,Grade\n"); // Write header
+	            for (int i = 0; i < count; i++) {
+	                if (students[i] != null) {
+	                    writer.write(students[i].getStudentID() + "," + students[i].getStudentName() + "," + students[i].getCourse() + "," + students[i].getGrade() + "\n");
+	                }
+	            }
+	        } catch (IOException e) {
+	            System.err.println("Error writing to the file: " + e.getMessage());
+	        }
+	    }
 
-		// Step 4: Method to sort students by grade in descending order
-		public void sortStudentsByGrade() {
-			Arrays.sort(compSciStudents, 0, compSciCount, Comparator.comparingInt(Student::getGrade).reversed());
-			Arrays.sort(statStudents, 0, statCount, Comparator.comparingInt(Student::getGrade).reversed());
-			Arrays.sort(apmthStudents, 0, apmthCount, Comparator.comparingInt(Student::getGrade).reversed());
+		public void processStudents() {
+
+			
 		}
 	}
-
-
-
